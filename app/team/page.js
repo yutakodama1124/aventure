@@ -107,7 +107,7 @@ function TeamContent() {
             bioEn: "Believing in the power of real conversation.",
             bioJp: "本当の会話の力を信じています。",
             color: "var(--accent-secondary)",
-            image: "/images/chopped_leader.jpg"
+            image: "/images/chopped_leader.JPG"
         },
     ];
 
