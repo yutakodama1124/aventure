@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLang } from "./LangContext";
@@ -11,6 +12,24 @@ export { useLang };
 export default function Navigation() {
     const pathname = usePathname();
     const { lang, setLang } = useLang();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // Close menu when route changes
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
+
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isMenuOpen]);
 
     const navItems = [
         { href: "/", label: { en: "Home", jp: "ホーム" } },
@@ -26,12 +45,13 @@ export default function Navigation() {
                     Aventure
                 </Link>
 
-                <div className="nav-links">
+                <div className={`nav-links ${isMenuOpen ? "mobile-open" : ""}`}>
                     {navItems.map((item) => (
                         <Link
                             key={item.href}
                             href={item.href}
                             className={`nav-link ${pathname === item.href ? "active" : ""}`}
+                            onClick={() => setIsMenuOpen(false)}
                         >
                             {lang === "en" ? item.label.en : item.label.jp}
                         </Link>
@@ -40,20 +60,30 @@ export default function Navigation() {
                     <div className="lang-switch">
                         <button
                             className={`lang-btn ${lang === "en" ? "active" : ""}`}
-                            onClick={() => setLang("en")}
+                            onClick={() => {
+                                setLang("en");
+                                setIsMenuOpen(false);
+                            }}
                         >
                             EN
                         </button>
                         <button
                             className={`lang-btn ${lang === "jp" ? "active" : ""}`}
-                            onClick={() => setLang("jp")}
+                            onClick={() => {
+                                setLang("jp");
+                                setIsMenuOpen(false);
+                            }}
                         >
                             JP
                         </button>
                     </div>
                 </div>
 
-                <button className="menu-toggle" aria-label="Menu">
+                <button
+                    className={`menu-toggle ${isMenuOpen ? "open" : ""}`}
+                    aria-label="Menu"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
                     <span></span>
                     <span></span>
                     <span></span>

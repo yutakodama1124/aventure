@@ -48,7 +48,7 @@ function ContactContent() {
             <section style={{ paddingTop: 0 }}>
                 <div className="container">
 
-                    <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem', marginBottom: '6rem' }}>
+                    <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '4rem', marginBottom: '6rem' }}>
 
                         {/* Visitor Postcard */}
                         <div className="animate-bounce-hover" style={{

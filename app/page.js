@@ -49,14 +49,7 @@ function HomeContent() {
                   </span>
                 </h1>
                 {/* Decorative Hand-drawn Circle Logo from sketch */}
-                <div style={{
-                  position: 'absolute', top: '-10%', right: '-10%',
-                  width: '300px', height: '300px',
-                  border: '6px solid var(--text-primary)', borderRadius: '50% 60% 40% 70%',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transform: 'rotate(15deg)', opacity: 0.9, overflow: 'hidden',
-                  zIndex: -1
-                }} className="blob-deco">
+                <div className="blob-deco">
                   <img src="/images/aventure_logo.jpg" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
@@ -78,7 +71,7 @@ function HomeContent() {
             </div>
 
             {/* Right side visual - Organic Blob masking */}
-            <div className="hero-visual reveal" style={{ position: 'relative', height: '500px' }}>
+            <div className="hero-visual reveal hero-visual-height" style={{ position: 'relative' }}>
               <img
                 src="/images/aventure_1.jpg"
                 className="rounded-blob-1"
@@ -102,7 +95,7 @@ function HomeContent() {
       {/* Why Us Section - Sketch Alignment (Cluster Layout) */}
       <section className="reveal" style={{ padding: '6rem 0' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '4rem', alignItems: 'center' }}>
+          <div className="responsive-grid-2">
 
             {/* Left Text */}
             <div>

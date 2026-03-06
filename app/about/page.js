@@ -71,7 +71,7 @@ function AboutContent() {
             {/* Intro Section - Split with Text Left, Photo Right */}
             <section style={{ paddingTop: 0 }}>
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                    <div className="responsive-split-left">
                         <div className="reveal">
                             <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem', lineHeight: 1.4 }}>
                                 {t.intro} <br />
@@ -100,7 +100,7 @@ function AboutContent() {
             {/* Realization - Reverse Split */}
             <section className="reveal" style={{ background: 'var(--bg-secondary)', padding: '6rem 0' }}>
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '4rem', alignItems: 'center' }}>
+                    <div className="responsive-split-right">
                         <div className="photo-cluster" style={{ height: '400px' }}>
                             <div className="cluster-item" style={{ top: '10%', left: '10%', width: '50%', height: '60%', transform: 'rotate(-5deg)' }}>
                                 <img src="/images/aventure_5.jpg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

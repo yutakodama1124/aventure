@@ -916,11 +916,75 @@ section {
 /* Responsive */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(253, 251, 247, 0.98);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: var(--space-xl) var(--space-md);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+  }
+
+  .nav-links.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
   }
 
   .menu-toggle {
     display: flex;
+    z-index: 1000;
+  }
+
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  .hero {
+    padding-top: calc(var(--space-xl) + 40px);
+  }
+
+  .hero-split {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .hero-visual-height {
+    height: 350px !important;
+  }
+
+  .responsive-grid-2,
+  .responsive-split-left,
+  .responsive-split-right {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-md) !important;
+  }
+
+  .photo-cluster {
+    height: 350px;
   }
 
   .about-block {
@@ -1137,4 +1201,57 @@ section {
 .cluster-item:hover {
   z-index: 10;
   transform: scale(1.1) rotate(0deg) !important;
+}
+
+/* Responsive grid utility classes */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.responsive-split-left {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.responsive-split-right {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-visual-height {
+  height: 500px;
+}
+
+.blob-deco {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  border: 6px solid var(--text-primary);
+  border-radius: 50% 60% 40% 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(15deg);
+  opacity: 0.9;
+  overflow: hidden;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .blob-deco {
+    opacity: 0.15;
+    width: 200px;
+    height: 200px;
+    top: 0;
+    right: -5%;
+  }
 }
