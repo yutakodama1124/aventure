@@ -1,26 +1,17 @@
 import Providers from "@/components/Providers";
-import { GlobalChoppedAnimation } from "@/components/GlobalChoppedAnimation";
+import { Analytics } from "@vercel/analytics/next";
+import { aventureJsonLd, siteConfig } from "@/app/seo";
 import "./globals.css";
 
 export const metadata = {
-  metadataBase: new URL("https://aventure.jp"),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: "Aventure | Student-Led Cultural Exchange in Tokyo",
     template: "%s | Aventure",
   },
   description:
-    "Experience Tokyo through authentic connections with local students. Aventure is a student-led, volunteer-based cultural exchange initiative sharing everyday Japan through conversation and local perspective.",
-  keywords: [
-    "Japan",
-    "cultural exchange",
-    "Tokyo",
-    "student volunteer",
-    "travel",
-    "日本",
-    "文化交流",
-    "Tokyo locals",
-    "student guides",
-  ],
+    `${siteConfig.description} ${siteConfig.descriptionJa}`,
+  keywords: [...siteConfig.keywords],
   alternates: {
     canonical: "/",
   },
@@ -30,14 +21,15 @@ export const metadata = {
   openGraph: {
     title: "Aventure | Student-Led Cultural Exchange in Tokyo",
     description:
-      "Walk Tokyo with local students and experience Japan through real conversation, everyday places, and youth perspectives.",
-    url: "https://aventure.jp",
+      "Walk Tokyo with local students and experience Japan through real conversation, everyday places, and youth perspectives. 東京を学生の視点から体験できる文化交流プロジェクトです。",
+    url: siteConfig.url,
     siteName: "Aventure",
     locale: "en_US",
+    alternateLocale: ["ja_JP"],
     type: "website",
     images: [
       {
-        url: "/images/hero_group.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
         alt: "Aventure cultural exchange experience in Tokyo",
@@ -49,7 +41,7 @@ export const metadata = {
     title: "Aventure | Student-Led Cultural Exchange in Tokyo",
     description:
       "Walk Tokyo with local students and experience Japan through real conversation, everyday places, and youth perspectives.",
-    images: ["/images/hero_group.png"],
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
@@ -63,7 +55,11 @@ export const metadata = {
     },
   },
   icons: {
-    icon: "/icon.jpg",
+    icon: [
+      { url: "/images/aventure_logo.jpg" },
+      { url: "/images/aventure_logo.jpg", sizes: "32x32", type: "image/jpeg" },
+    ],
+    apple: "/images/aventure_logo.jpg",
   },
 };
 
@@ -80,9 +76,15 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <GlobalChoppedAnimation />
           {children}
         </Providers>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(aventureJsonLd),
+          }}
+        />
+        <Analytics />
       </body>
     </html>
   );
